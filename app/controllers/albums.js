@@ -1,19 +1,15 @@
-const { getAlbums, getAlbumPhotos } = require('../services/album');
+const { getInfoAlbums } = require('../services/album');
 
-exports.allAlbums = async (req, res, next) => {
-  try {
-    const albums = await getAlbums('/albums');
-    res.status(200).send(albums);
-  } catch (err) {
-    next(err);
-  }
-};
+exports.allAlbums = (_, res, next) =>
+  getInfoAlbums('/albums')
+    .then(albums => {
+      res.status(200).send(albums);
+    })
+    .catch(next);
 
-exports.albumPhotos = async (req, res, next) => {
-  try {
-    const albumphotos = await getAlbumPhotos(`/photos?albumId=${req.params.id}`);
-    res.status(200).send(albumphotos);
-  } catch (err) {
-    next(err);
-  }
-};
+exports.albumPhotos = (req, res, next) =>
+  getInfoAlbums(`/photos?albumId=${req.params.id}`)
+    .then(albums => {
+      res.status(200).send(albums);
+    })
+    .catch(next);
