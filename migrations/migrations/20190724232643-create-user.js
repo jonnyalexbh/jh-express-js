@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      first_name: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      lastName: {
+      last_name: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -25,14 +25,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      created_at: Sequelize.DATE,
+      updated_at: Sequelize.DATE,
+      delete_at: Sequelize.DATE
     }),
   down: queryInterface => queryInterface.dropTable('Users')
 };
