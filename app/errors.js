@@ -11,3 +11,6 @@ exports.defaultError = message => internalError(message, exports.DEFAULT_ERROR);
 
 exports.ALBUMS_API_ERROR = 'albums_api_error';
 exports.albumsApiError = message => internalError(message, exports.ALBUMS_API_ERROR);
+
+exports.EMAIL_EXIST = 'email_exist';
+exports.emailExist = message => internalError(message, exports.EMAIL_EXIST);
