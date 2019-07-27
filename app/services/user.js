@@ -1,10 +1,6 @@
 const { User } = require('../models'),
   error = require('../errors'),
-  logger = require('../logger'),
-  bcrypt = require('bcryptjs'),
-  salt_sync = require('../../config').encryption;
-
-const salt = () => bcrypt.genSaltSync(parseInt(salt_sync));
+  logger = require('../logger');
 
 exports.createUser = user =>
   User.create(user)
@@ -20,5 +16,3 @@ exports.createUser = user =>
       logger.error(`Could not create user: ${user.first_name}`);
       throw error.databaseError(err.message);
     });
-
-exports.encryptPassword = password => bcrypt.hashSync(password, salt());
