@@ -14,3 +14,6 @@ exports.albumsApiError = message => internalError(message, exports.ALBUMS_API_ER
 
 exports.EMAIL_EXIST = 'email_exist';
 exports.emailExist = message => internalError(message, exports.EMAIL_EXIST);
+
+exports.VALIDATION_FAILED = 'validation_failed';
+exports.validationFailed = message => internalError(message, exports.VALIDATION_FAILED);
