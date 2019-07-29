@@ -10,6 +10,6 @@ exports.storeUser = (req, res, next) => {
   };
   return servicesUser
     .createUser(user)
-    .then(result => res.send(result))
+    .then(result => res.status(201).send(result))
     .catch(next);
 };
