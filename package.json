@@ -58,6 +58,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-validator": "^6.1.1",
     "express-wolox-logger": "0.0.2",
     "jwt-simple": "^0.5.1",
     "pg": "^7.4.1",
