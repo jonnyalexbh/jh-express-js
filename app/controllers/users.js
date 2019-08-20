@@ -1,7 +1,7 @@
 const servicesUser = require('../services/user'),
   helpers = require('../helpers');
 
-exports.storeUser = (req, res, next) => {
+exports.signUp = (req, res, next) => {
   const user = {
     firstName: req.body.first_name,
     lastName: req.body.last_name,
@@ -13,3 +13,11 @@ exports.storeUser = (req, res, next) => {
     .then(result => res.status(201).send(result))
     .catch(next);
 };
+
+exports.signIn = (req, res, next) =>
+  servicesUser
+    .login(req.body)
+    .then(token => {
+      res.status(200).send({ token });
+    })
+    .catch(next);

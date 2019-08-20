@@ -1,6 +1,7 @@
 const { User } = require('../models'),
   error = require('../errors'),
-  logger = require('../logger');
+  logger = require('../logger'),
+  { generateToken, checkPassword } = require('../helpers');
 
 exports.createUser = user =>
   User.create(user)
@@ -16,3 +17,13 @@ exports.createUser = user =>
       logger.error(`Could not create user: ${user.first_name}`);
       throw error.databaseError(err.message);
     });
+
+exports.login = user =>
+  User.findOne({ where: { email: user.email } }).then(result => {
+    logger.info(`trying to authenticate user ${user.email}`);
+    if (result && checkPassword(user.password, result.password)) {
+      return generateToken(result);
+    }
+    logger.error(`There is no user with that email: ${user.email}`);
+    throw error.signInError('incorrect username or password');
+  });

@@ -9,7 +9,7 @@ const validateErrors = (req, res, next) => {
   next();
 };
 
-const fields = [
+const fieldsSignUp = [
   check('first_name')
     .not()
     .isEmpty()
@@ -36,4 +36,16 @@ const fields = [
     .withMessage('Password must be alphanumeric')
 ];
 
-exports.signUpValidator = [...fields, validateErrors];
+const fieldsSingIn = [
+  check('email')
+    .not()
+    .isEmpty()
+    .withMessage('Email is missing.')
+    .isEmail()
+    .withMessage('Invalid email.')
+    .matches(/^.+@wolox(\.com\.ar|\.co)$/i)
+    .withMessage('The email does not belong to a Wolox domain.')
+];
+
+exports.signUpValidator = [...fieldsSignUp, validateErrors];
+exports.signInValidator = [...fieldsSingIn, validateErrors];
