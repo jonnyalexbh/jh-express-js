@@ -1,7 +1,8 @@
 const { User } = require('../models'),
   error = require('../errors'),
   logger = require('../logger'),
-  { generateToken, checkPassword } = require('../helpers');
+  { checkPassword } = require('../helpers'),
+  { generateToken } = require('../utils');
 
 exports.createUser = user =>
   User.create(user)
@@ -19,7 +20,7 @@ exports.createUser = user =>
     });
 
 exports.login = user =>
-  User.findOne({ where: { email: user.email } }).then(result => {
+  User.getOne(user.email).then(result => {
     logger.info(`trying to authenticate user ${user.email}`);
     if (result && checkPassword(user.password, result.password)) {
       return generateToken(result);

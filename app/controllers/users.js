@@ -3,8 +3,8 @@ const servicesUser = require('../services/user'),
 
 exports.signUp = (req, res, next) => {
   const user = {
-    firstName: req.body.first_name,
-    lastName: req.body.last_name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: helpers.encryptPassword(req.body.password)
   };

@@ -10,14 +10,14 @@ const validateErrors = (req, res, next) => {
 };
 
 const fieldsSignUp = [
-  check('first_name')
+  check('firstName')
     .not()
     .isEmpty()
-    .withMessage('name is required.'),
-  check('last_name')
+    .withMessage('firstName is required.'),
+  check('lastName')
     .not()
     .isEmpty()
-    .withMessage('last_name is required.'),
+    .withMessage('lastName is required.'),
   check('email')
     .not()
     .isEmpty()
