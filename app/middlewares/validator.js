@@ -1,4 +1,5 @@
 const { check, validationResult } = require('express-validator/check'),
+  helpers = require('../helpers'),
   errors = require('../errors');
 
 const validateErrors = (req, res, next) => {
@@ -34,6 +35,7 @@ const fieldsSignUp = [
     .withMessage('Password must be at least 8 characters in length.')
     .isAlphanumeric()
     .withMessage('Password must be alphanumeric')
+    .customSanitizer(password => helpers.encryptPassword(password))
 ];
 
 const fieldsSingIn = [

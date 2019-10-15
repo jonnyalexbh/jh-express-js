@@ -1,18 +1,10 @@
-const servicesUser = require('../services/user'),
-  helpers = require('../helpers');
+const servicesUser = require('../services/user');
 
-exports.signUp = (req, res, next) => {
-  const user = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: helpers.encryptPassword(req.body.password)
-  };
-  return servicesUser
-    .createUser(user)
+exports.signUp = (req, res, next) =>
+  servicesUser
+    .createUser(req.body)
     .then(result => res.status(201).send(result))
     .catch(next);
-};
 
 exports.signIn = (req, res, next) =>
   servicesUser
