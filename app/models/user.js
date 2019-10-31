@@ -1,4 +1,8 @@
 'use strict';
+
+const logger = require('../logger');
+const errors = require('../errors');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
@@ -30,5 +34,12 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'users'
     }
   );
+
+  User.getOne = email =>
+    User.findOne({ where: { email } }).catch(err => {
+      logger.error(err);
+      throw errors.databaseError(err);
+    });
+
   return User;
 };
