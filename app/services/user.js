@@ -28,3 +28,9 @@ exports.login = user =>
     logger.error(`There is no user with that email: ${user.email}`);
     throw error.signInError('incorrect username or password');
   });
+
+exports.users = (limit, offset) =>
+  User.getAll(limit, offset).then(result => {
+    logger.info('listing users');
+    return result;
+  });

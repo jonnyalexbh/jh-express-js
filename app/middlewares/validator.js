@@ -46,7 +46,10 @@ const fieldsSingIn = [
     .isEmail()
     .withMessage('Invalid email.')
     .matches(/^.+@wolox(\.com\.ar|\.co)$/i)
-    .withMessage('The email does not belong to a Wolox domain.')
+    .withMessage('The email does not belong to a Wolox domain.'),
+  check('password')
+    .not()
+    .isEmpty()
 ];
 
 exports.signUpValidator = [...fieldsSignUp, validateErrors];

@@ -13,3 +13,13 @@ exports.signIn = (req, res, next) =>
       res.status(200).send({ token });
     })
     .catch(next);
+
+exports.userList = (req, res, next) => {
+  const { limit, offset } = req.query;
+  servicesUser
+    .users(limit, offset)
+    .then(users => {
+      res.status(200).send({ users });
+    })
+    .catch(next);
+};

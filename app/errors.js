@@ -18,5 +18,8 @@ exports.emailExistError = message => internalError(message, exports.EMAIL_EXIST_
 exports.VALIDATION_ERROR = 'validation_error';
 exports.validationError = message => internalError(message, exports.VALIDATION_ERROR);
 
+exports.TOKEN_ERROR = 'token_error';
+exports.tokenError = message => internalError(message, exports.TOKEN_ERROR);
+
 exports.SIGN_IN_ERROR = 'sign_in_error';
 exports.signInError = message => internalError(message, exports.SIGN_IN_ERROR);
