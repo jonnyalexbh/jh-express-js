@@ -9,7 +9,8 @@ const statusCodes = {
   [errors.ALBUMS_API_ERROR]: 503,
   [errors.EMAIL_EXIST_ERROR]: 422,
   [errors.VALIDATION_ERROR]: 400,
-  [errors.SIGN_IN_ERROR]: 401
+  [errors.SIGN_IN_ERROR]: 401,
+  [errors.TOKEN_ERROR]: 403
 };
 
 exports.handle = (error, req, res, next) => {

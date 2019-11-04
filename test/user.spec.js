@@ -62,3 +62,26 @@ describe('User Sign-In', () => {
     expect(res.body.message).toBe('incorrect username or password');
   });
 });
+
+describe('Get list users', () => {
+  it('users without authorization token', async () => {
+    const res = await request(app)
+      .get('/users')
+      .send();
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBe('The authorization token is required');
+  });
+
+  it('users with authorization token', async () => {
+    const user = await userFactory.create({ password: helpers.encryptPassword('ubuntu2018') });
+    const auth = await request(app)
+      .post('/users/sessions')
+      .send({ email: user.email, password: 'ubuntu2018' });
+    const { token } = auth.body;
+    const res = await request(app)
+      .get('/users')
+      .set('Authorization', `Bearer ${token}`)
+      .send();
+    expect(res.status).toBe(200);
+  });
+});

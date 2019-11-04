@@ -41,5 +41,11 @@ module.exports = (sequelize, DataTypes) => {
       throw errors.databaseError(err);
     });
 
+  User.getAll = (limit = 10, offset = 0) =>
+    User.findAll({ offset, limit }).catch(err => {
+      logger.error(err);
+      throw errors.databaseError(err);
+    });
+
   return User;
 };
